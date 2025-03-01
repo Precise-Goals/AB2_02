@@ -278,12 +278,12 @@ const FigmaLikeEditor = () => {
   // };
   const generateAiSuggestions = async () => {
     try {
-      const apiKey = 'fa2ab5ed7294c5a01357c96de9fd83fdb9170f1e1564514b44b90f2674db0ba0';
-  
+      const apiKey = import.meta.env.VITE_TOGETHER_API;
+
       if (!apiKey) {
         throw new Error("API key is missing. Please set your API key.");
       }
-  
+
       const response = await fetch("https://api.together.xyz/v1/completions", {
         method: "POST",
         headers: {
@@ -299,28 +299,28 @@ const FigmaLikeEditor = () => {
           top_p: 0.9,
         }),
       });
-  
+
       if (!response.ok) {
         throw new Error(`Request failed with status: ${response.status}`);
       }
-  
+
       const data = await response.json();
-  
+
       // Parse the response to extract the suggestions
       let suggestions;
       try {
         // Try to parse the response as JSON directly
         const responseText = data.choices[0].text.trim();
-        
+
         // Clean up responseText to ensure it’s valid JSON
-        const cleanedText = responseText.replace(/\\n/g, '').replace(/'/g, '"');
-        
+        const cleanedText = responseText.replace(/\\n/g, "").replace(/'/g, '"');
+
         suggestions = JSON.parse(cleanedText);
       } catch (e) {
         // If direct parsing fails, try to extract JSON from text
         const responseText = data.choices[0].text.trim();
         const jsonMatch = responseText.match(/\[.*\]/s);
-  
+
         if (jsonMatch) {
           suggestions = JSON.parse(jsonMatch[0]);
         } else {
@@ -332,7 +332,7 @@ const FigmaLikeEditor = () => {
             .map((line) => line.replace(/^["'\d\s-.*•]+/, "").trim());
         }
       }
-  
+
       // Ensure we have exactly 2 suggestions
       suggestions = suggestions.slice(0, 2);
       if (suggestions.length < 2) {
@@ -340,7 +340,7 @@ const FigmaLikeEditor = () => {
           "Ensure your design maintains consistency across all pages and elements."
         );
       }
-  
+
       setAiSuggestions(suggestions);
       setShowSuggestions(true);
     } catch (error) {
@@ -353,7 +353,7 @@ const FigmaLikeEditor = () => {
       setShowSuggestions(true);
     }
   };
-  
+
   // Render element on canvas
   const renderElement = (element, index) => {
     const isSelected = selectedElement === index;
@@ -436,10 +436,9 @@ const FigmaLikeEditor = () => {
             <button onClick={() => addElement("form")}>Form</button>
           </div>
 
-          <div>
-            <h3>AI Assistant</h3>
-            <button onClick={generateAiSuggestions}>
-              Get Design Suggestions
+          <div style={{ border: "none" ,display:'flex',justifyContent:"center"}}>
+            <button className="aisas" onClick={generateAiSuggestions}>
+              AI Assistant
             </button>
           </div>
         </div>
