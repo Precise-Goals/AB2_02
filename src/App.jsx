@@ -1,7 +1,9 @@
 import React from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import Index from "./containers/Index";
+// import Index from "./containers/Index";
+import Index from "./containers/Indes";
+// import Index from "./components/Indes";
 
 const App = () => {
   return (

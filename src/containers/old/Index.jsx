@@ -68,7 +68,7 @@ const Index = () => {
   return (
     <div className="editor-container">
       <header className="editor-header">
-        <h1>UI Builder</h1>
+        <h1>UIFusion</h1>
       </header>
 
       <div className="editor-layout">
