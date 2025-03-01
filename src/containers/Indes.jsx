@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./style.css";
+// import { generateAiSuggestions } from "./AI";
 
 // Main Editor Component
 const FigmaLikeEditor = () => {
@@ -266,18 +267,13 @@ const FigmaLikeEditor = () => {
 
     setElements(newElements);
   };
-
-  // Generate AI suggestions based on current layout
   const generateAiSuggestions = () => {
-    // In a real application, this would call an AI service
-    // Here we'll simulate some basic suggestions
-
     const suggestions = [
       "Try adding more contrast between your text and background colors",
       "Consider aligning your elements to a grid for better visual flow",
       "Your current spacing between elements could be more consistent",
-      "This layout would work better on mobile with a column arrangement",
-      "Consider using a complementary color for your call-to-action buttons",
+      // "This layout would work better on mobile with a column arrangement",
+      // "Consider using a complementary color for your call-to-action buttons",
     ];
 
     setAiSuggestions(suggestions);
@@ -339,7 +335,7 @@ const FigmaLikeEditor = () => {
   return (
     <div className="editor-container">
       <header className="editor-header">
-        <div className="logo">GDGC PCCOE DESIGN EDITOR 2.0</div>
+        <div className="logo">UIFUSION</div>
         <div className="header-actions">
           <button onClick={() => window.alert("Preview mode would open here")}>
             Preview
@@ -350,21 +346,27 @@ const FigmaLikeEditor = () => {
 
       <div className="editor-content">
         <div className="toolbar">
-          <h3>Elements</h3>
-          <button onClick={() => addElement("text")}>Text</button>
-          <button onClick={() => addElement("container")}>Container</button>
-          <button onClick={() => addElement("button")}>Button</button>
-          <button onClick={() => addElement("image")}>Image</button>
+          <div>
+            <h3>Elements</h3>
+            <button onClick={() => addElement("text")}>Text</button>
+            <button onClick={() => addElement("container")}>Container</button>
+            <button onClick={() => addElement("button")}>Button</button>
+            <button onClick={() => addElement("image")}>Image</button>
+          </div>
 
-          <h3>Components</h3>
-          <button onClick={() => addElement("card")}>Card</button>
-          <button onClick={() => addElement("navbar")}>Navbar</button>
-          <button onClick={() => addElement("form")}>Form</button>
+          <div>
+            <h3>Components</h3>
+            <button onClick={() => addElement("card")}>Card</button>
+            <button onClick={() => addElement("navbar")}>Navbar</button>
+            <button onClick={() => addElement("form")}>Form</button>
+          </div>
 
-          <h3>AI Assistant</h3>
-          <button onClick={generateAiSuggestions}>
-            Get Design Suggestions
-          </button>
+          <div>
+            <h3>AI Assistant</h3>
+            <button onClick={generateAiSuggestions}>
+              Get Design Suggestions
+            </button>
+          </div>
         </div>
 
         <div

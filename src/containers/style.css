@@ -58,10 +58,9 @@ body {
 
 /* Toolbar styles */
 .toolbar {
-  width: 200px;
+  width: 350px;
   background-color: white;
   border-right: 1px solid #e0e0e0;
-  padding: 1rem;
   overflow-y: auto;
 }
 
@@ -239,22 +238,22 @@ body {
 
 /* AI Suggestions panel */
 .ai-suggestions {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 300px;
-  background-color: white;
-  border-radius: 8px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 350px;
+  border-radius: 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   z-index: 100;
+  padding: 1rem;
 }
 
 .suggestions-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.8rem 1rem;
-  border-bottom: 1px solid #e0e0e0;
+  padding: 0rem 1rem;
+  /* border-bottom: 1px solid #e0e0e0; */
 }
 
 .suggestions-header h3 {
@@ -277,12 +276,17 @@ body {
 }
 
 .ai-suggestions li {
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #f0f0f0;
-  font-size: 0.9rem;
+  padding: 0.35rem 0;
+  font-size: 0.8rem;
   color: #333;
 }
 
 .ai-suggestions li:last-child {
   border-bottom: none;
+}
+.toolbar div {
+  margin: 1.5rem 0;
+  padding: 0rem 2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid lightgray;
 }
