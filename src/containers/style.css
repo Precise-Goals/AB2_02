@@ -25,13 +25,13 @@ body {
   align-items: center;
   background-color: #3f51b5;
   color: white;
-  padding: 0.8rem 1.5rem;
+  padding: 1.8rem 9.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 .header-actions button {
@@ -153,13 +153,12 @@ body {
 
 /* Properties panel styles */
 .properties-panel {
-  width: 260px;
+  width: 350px;
   background-color: white;
   border-left: 1px solid #e0e0e0;
-  padding: 1rem;
-  overflow-y: auto;
+  padding: 2rem 3rem;
+  overflow-y: scroll;
 }
-
 .properties-panel h3 {
   margin-bottom: 1rem;
   font-size: 0.9rem;
@@ -186,7 +185,7 @@ body {
 }
 
 .property-group input[type="color"] {
-  width: 100%;
+  width: 50px;
   height: 30px;
   border: 1px solid #e0e0e0;
   cursor: pointer;
@@ -239,13 +238,13 @@ body {
 /* AI Suggestions panel */
 .ai-suggestions {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: 0%;
+  left: 0%;
   width: 350px;
   border-radius: 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   z-index: 100;
-  padding: 1rem;
+  transform: translate(0%, -25%);
+  padding: 0 1rem;
 }
 
 .suggestions-header {
@@ -290,3 +289,29 @@ body {
   padding-bottom: 0.75rem;
   border-bottom: 1px solid lightgray;
 }
+.property-group {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.clr label {
+  width: 70%;
+}
+.property-group.clr {
+  width: 70%;
+}
+.property-group.clr {
+  width: 70%;
+}
+
+.property-group label {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.properties-panel h3 {
+  font-size: 1.5rem;
+  text-transform: math-auto;
+  margin-bottom: 1.618rem;
+} 

@@ -271,7 +271,7 @@ const FigmaLikeEditor = () => {
     const suggestions = [
       "Try adding more contrast between your text and background colors",
       "Consider aligning your elements to a grid for better visual flow",
-      "Your current spacing between elements could be more consistent",
+      // "Your current spacing between elements could be more consistent",
       // "This layout would work better on mobile with a column arrangement",
       // "Consider using a complementary color for your call-to-action buttons",
     ];
@@ -299,7 +299,8 @@ const FigmaLikeEditor = () => {
         key={element.id}
         className={`canvas-element ${element.type}-element`}
         style={elementStyle}
-        onMouseDown={(e) => handleElementSelect(index, e)}
+        onDoubleClick={(e) => handleElementSelect(index, e)}
+        onMouseDown={(E) => handleElementSelect(index, E)}
       >
         {element.type === "text" && (
           <div
@@ -387,109 +388,125 @@ const FigmaLikeEditor = () => {
 
           {selectedElement !== null ? (
             <div className="properties-form">
-              <div className="property-group">
-                <label>Background</label>
-                <input
-                  type="color"
-                  value={
-                    elements[selectedElement].style.backgroundColor || "#ffffff"
-                  }
-                  onChange={(e) =>
-                    updateElementStyle("backgroundColor", e.target.value)
-                  }
-                />
+              <div className="mclr">
+                <div className="property-group clr">
+                  <label>Background</label>
+                  <input
+                    type="color"
+                    value={
+                      elements[selectedElement].style.backgroundColor ||
+                      "#ffffff"
+                    }
+                    onChange={(e) =>
+                      updateElementStyle("backgroundColor", e.target.value)
+                    }
+                  />
+                </div>
+
+                <div className="property-group clr">
+                  <label>Text Color</label>
+                  <input
+                    type="color"
+                    value={elements[selectedElement].style.color || "#000000"}
+                    onChange={(e) =>
+                      updateElementStyle("color", e.target.value)
+                    }
+                  />
+                </div>
+
+                <div className="property-group clr">
+                  <label>Border Color</label>
+                  <input
+                    type="color"
+                    value={
+                      elements[selectedElement].style.borderColor || "#cccccc"
+                    }
+                    onChange={(e) =>
+                      updateElementStyle("borderColor", e.target.value)
+                    }
+                  />
+                </div>
               </div>
 
-              <div className="property-group">
-                <label>Text Color</label>
-                <input
-                  type="color"
-                  value={elements[selectedElement].style.color || "#000000"}
-                  onChange={(e) => updateElementStyle("color", e.target.value)}
-                />
+              <div className="mrng">
+                <div className="property-group rng">
+                  <label>Border Width</label>
+                  <input
+                    type="range"
+                    min="0"
+                    max="10"
+                    value={
+                      parseInt(elements[selectedElement].style.borderWidth) || 0
+                    }
+                    onChange={(e) =>
+                      updateElementStyle("borderWidth", `${e.target.value}px`)
+                    }
+                  />
+                  <span>{elements[selectedElement].style.borderWidth}</span>
+                </div>
+
+                <div className="property-group rng">
+                  <label>Border Radius</label>
+                  <input
+                    type="range"
+                    min="0"
+                    max="150"
+                    value={
+                      parseInt(elements[selectedElement].style.borderRadius) ||
+                      0
+                    }
+                    onChange={(e) =>
+                      updateElementStyle("borderRadius", `${e.target.value}px`)
+                    }
+                  />
+                  <span>{elements[selectedElement].style.borderRadius}</span>
+                </div>
+
+                <div className="property-group rng">
+                  <label>Padding</label>
+                  <input
+                    type="range"
+                    min="0"
+                    max="50"
+                    value={
+                      parseInt(elements[selectedElement].style.padding) || 0
+                    }
+                    onChange={(e) =>
+                      updateElementStyle("padding", `${e.target.value}px`)
+                    }
+                  />
+                  <span>{elements[selectedElement].style.padding}</span>
+                </div>
+
+                <div className="property-group rng">
+                  <label>Margin</label>
+                  <input
+                    type="range"
+                    min="0"
+                    max="50"
+                    value={
+                      parseInt(elements[selectedElement].style.margin) || 0
+                    }
+                    onChange={(e) =>
+                      updateElementStyle("margin", `${e.target.value}px`)
+                    }
+                  />
+                  <span>{elements[selectedElement].style.margin}</span>
+                </div>
               </div>
 
-              <div className="property-group">
-                <label>Border Color</label>
-                <input
-                  type="color"
-                  value={
-                    elements[selectedElement].style.borderColor || "#cccccc"
-                  }
-                  onChange={(e) =>
-                    updateElementStyle("borderColor", e.target.value)
-                  }
-                />
-              </div>
-
-              <div className="property-group">
-                <label>Border Width</label>
-                <input
-                  type="range"
-                  min="0"
-                  max="10"
-                  value={
-                    parseInt(elements[selectedElement].style.borderWidth) || 0
-                  }
-                  onChange={(e) =>
-                    updateElementStyle("borderWidth", `${e.target.value}px`)
-                  }
-                />
-                <span>{elements[selectedElement].style.borderWidth}</span>
-              </div>
-
-              <div className="property-group">
-                <label>Border Radius</label>
-                <input
-                  type="range"
-                  min="0"
-                  max="50"
-                  value={
-                    parseInt(elements[selectedElement].style.borderRadius) || 0
-                  }
-                  onChange={(e) =>
-                    updateElementStyle("borderRadius", `${e.target.value}px`)
-                  }
-                />
-                <span>{elements[selectedElement].style.borderRadius}</span>
-              </div>
-
-              <div className="property-group">
-                <label>Padding</label>
-                <input
-                  type="range"
-                  min="0"
-                  max="50"
-                  value={parseInt(elements[selectedElement].style.padding) || 0}
-                  onChange={(e) =>
-                    updateElementStyle("padding", `${e.target.value}px`)
-                  }
-                />
-                <span>{elements[selectedElement].style.padding}</span>
-              </div>
-
-              <div className="property-group">
-                <label>Margin</label>
-                <input
-                  type="range"
-                  min="0"
-                  max="50"
-                  value={parseInt(elements[selectedElement].style.margin) || 0}
-                  onChange={(e) =>
-                    updateElementStyle("margin", `${e.target.value}px`)
-                  }
-                />
-                <span>{elements[selectedElement].style.margin}</span>
-              </div>
+                    <div className="txt">
+                      
+                    </div>
 
               {elements[selectedElement].type === "text" && (
                 <>
-                  <div className="property-group">
+                  <div className="property-group rng">
                     <label>Font Size</label>
                     <input
                       type="range"
                       min="8"
-                      max="72"
+                      max="108"
                       value={
                         parseInt(elements[selectedElement].style.fontSize) || 16
                       }
