@@ -410,7 +410,7 @@ const FigmaLikeEditor = () => {
   return (
     <div className="editor-container">
       <header className="editor-header">
-        <div className="logo">UIFUSION</div>
+        <div className="logo">UNIFUSION</div>
         <div className="header-actions">
           <button onClick={() => window.alert("Preview mode would open here")}>
             Preview
