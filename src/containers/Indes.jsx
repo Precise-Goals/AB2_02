@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./style.css";
+import EditorHeader from "./EditorHeader";
 // import { generateAiSuggestions } from "./AI";
 
 // Main Editor Component
@@ -409,7 +410,7 @@ const FigmaLikeEditor = () => {
 
   return (
     <div className="editor-container">
-      <header className="editor-header">
+      {/* <header className="editor-header">
         <div className="logo">UNIFUSION</div>
         <div className="header-actions">
           <button onClick={() => window.alert("Preview mode would open here")}>
@@ -417,8 +418,8 @@ const FigmaLikeEditor = () => {
           </button>
           <button onClick={() => window.alert("Design saved!")}>Save</button>
         </div>
-      </header>
-
+      </header> */}
+      <EditorHeader elements={elements}/>
       <div className="editor-content">
         <div className="toolbar">
           <div>
@@ -436,7 +437,13 @@ const FigmaLikeEditor = () => {
             <button onClick={() => addElement("form")}>Form</button>
           </div>
 
-          <div style={{ border: "none" ,display:'flex',justifyContent:"center"}}>
+          <div
+            style={{
+              border: "none",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <button className="aisas" onClick={generateAiSuggestions}>
               AI Assistant
             </button>

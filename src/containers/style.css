@@ -37,7 +37,6 @@ body {
 .header-actions button {
   margin-left: 0.5rem;
   background-color: white;
-  color: #3f51b5;
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 4px;
@@ -95,7 +94,7 @@ body {
 /* Canvas styles */
 .canvas {
   flex: 1;
-  background-color: white;
+  background-color: #d6d6d6e3;
   position: relative;
   overflow: auto;
   cursor: default;
@@ -194,18 +193,29 @@ body {
 .property-group input[type="range"] {
   width: 80%;
   vertical-align: middle;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 1px solid gray;
+  border-radius: 1rem;
+  background-color: white;
   overflow: hidden;
 }
 .property-group input[type="range"]::-webkit-slider-thumb {
-  width: 10px;
+  width: 15px;
   -webkit-appearance: none;
-  height: 10px;
+  height: 130px;
   cursor: ew-resize;
-  background: #434343;
+  background: lightgrey;
   box-shadow: -80px 0 0 80px black;
 }
 .property-group input[type="range"]::-webkit-slider-runnable-track {
   height: 5rem;
+  overflow: hidden;
+  height: 10px;
+  -webkit-appearance: none;
+  color: #000000;
+  border-radius: 0 0 0 0;
+  margin-top: -1px;
 }
 
 .property-group span {
@@ -236,6 +246,7 @@ body {
   display: inline-block;
   width: 20%;
   font-size: 0.8rem;
+  margin-right: 5px;
   color: #666;
 }
 
@@ -369,4 +380,7 @@ button.aisas:hover {
   background-color: white;
   color: black;
   border: 1px solid black;
+}
+.rngs {
+  width: 100%;
 }
