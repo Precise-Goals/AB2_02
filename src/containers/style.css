@@ -216,9 +216,8 @@ body {
   display: flex;
   justify-content: space-between;
 }
-
 .position-inputs div {
-  width: 48%;
+  width: 80px;
 }
 
 .position-inputs span {
@@ -314,4 +313,28 @@ body {
   font-size: 1.5rem;
   text-transform: math-auto;
   margin-bottom: 1.618rem;
-} 
+}
+.mlay,
+.mclr,
+.mtxt,
+.mrng {
+  margin: 1.25rem 0;
+  border-bottom: 1px solid gray;
+  padding: 1.25rem 0;
+}
+
+.property-group.rng {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.property-group.rngs {
+  width: 100%;
+}
+
+.property-group.ts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 1rem 0;
+}

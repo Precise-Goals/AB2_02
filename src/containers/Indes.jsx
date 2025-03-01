@@ -388,6 +388,75 @@ const FigmaLikeEditor = () => {
 
           {selectedElement !== null ? (
             <div className="properties-form">
+              <div className="mlay">
+                <div className="property-group">
+                  <label>Position</label>
+                  <div className="position-inputs">
+                    <div>
+                      <span>X:</span>
+                      <input
+                        type="number"
+                        value={Math.round(elements[selectedElement].position.x)}
+                        onChange={(e) => {
+                          const newElements = [...elements];
+                          newElements[selectedElement].position.x = parseInt(
+                            e.target.value
+                          );
+                          setElements(newElements);
+                        }}
+                      />
+                    </div>
+                    <div>
+                      <span>Y:</span>
+                      <input
+                        type="number"
+                        value={Math.round(elements[selectedElement].position.y)}
+                        onChange={(e) => {
+                          const newElements = [...elements];
+                          newElements[selectedElement].position.y = parseInt(
+                            e.target.value
+                          );
+                          setElements(newElements);
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="property-group">
+                  <label>Size</label>
+                  <div className="position-inputs">
+                    <div>
+                      <span>W:</span>
+                      <input
+                        type="number"
+                        value={Math.round(elements[selectedElement].width)}
+                        onChange={(e) => {
+                          const newElements = [...elements];
+                          newElements[selectedElement].width = parseInt(
+                            e.target.value
+                          );
+                          setElements(newElements);
+                        }}
+                      />
+                    </div>
+                    <div>
+                      <span>H:</span>
+                      <input
+                        type="number"
+                        value={Math.round(elements[selectedElement].height)}
+                        onChange={(e) => {
+                          const newElements = [...elements];
+                          newElements[selectedElement].height = parseInt(
+                            e.target.value
+                          );
+                          setElements(newElements);
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div className="mclr">
                 <div className="property-group clr">
                   <label>Background</label>
@@ -431,192 +500,142 @@ const FigmaLikeEditor = () => {
               <div className="mrng">
                 <div className="property-group rng">
                   <label>Border Width</label>
-                  <input
-                    type="range"
-                    min="0"
-                    max="10"
-                    value={
-                      parseInt(elements[selectedElement].style.borderWidth) || 0
-                    }
-                    onChange={(e) =>
-                      updateElementStyle("borderWidth", `${e.target.value}px`)
-                    }
-                  />
-                  <span>{elements[selectedElement].style.borderWidth}</span>
+                  <div className="rngs">
+                    <input
+                      type="range"
+                      min="0"
+                      max="10"
+                      value={
+                        parseInt(elements[selectedElement].style.borderWidth) ||
+                        0
+                      }
+                      onChange={(e) =>
+                        updateElementStyle("borderWidth", `${e.target.value}px`)
+                      }
+                    />
+                    <span>{elements[selectedElement].style.borderWidth}</span>
+                  </div>
                 </div>
 
                 <div className="property-group rng">
                   <label>Border Radius</label>
-                  <input
-                    type="range"
-                    min="0"
-                    max="150"
-                    value={
-                      parseInt(elements[selectedElement].style.borderRadius) ||
-                      0
-                    }
-                    onChange={(e) =>
-                      updateElementStyle("borderRadius", `${e.target.value}px`)
-                    }
-                  />
-                  <span>{elements[selectedElement].style.borderRadius}</span>
+                  <div className="rngs">
+                    <input
+                      type="range"
+                      min="0"
+                      max="150"
+                      value={
+                        parseInt(
+                          elements[selectedElement].style.borderRadius
+                        ) || 0
+                      }
+                      onChange={(e) =>
+                        updateElementStyle(
+                          "borderRadius",
+                          `${e.target.value}px`
+                        )
+                      }
+                    />
+                    <span>{elements[selectedElement].style.borderRadius}</span>
+                  </div>
                 </div>
 
                 <div className="property-group rng">
                   <label>Padding</label>
-                  <input
-                    type="range"
-                    min="0"
-                    max="50"
-                    value={
-                      parseInt(elements[selectedElement].style.padding) || 0
-                    }
-                    onChange={(e) =>
-                      updateElementStyle("padding", `${e.target.value}px`)
-                    }
-                  />
-                  <span>{elements[selectedElement].style.padding}</span>
+                  <div className="rngs">
+                    <input
+                      type="range"
+                      min="0"
+                      max="50"
+                      value={
+                        parseInt(elements[selectedElement].style.padding) || 0
+                      }
+                      onChange={(e) =>
+                        updateElementStyle("padding", `${e.target.value}px`)
+                      }
+                    />
+                    <span>{elements[selectedElement].style.padding}</span>
+                  </div>
                 </div>
 
                 <div className="property-group rng">
                   <label>Margin</label>
-                  <input
-                    type="range"
-                    min="0"
-                    max="50"
-                    value={
-                      parseInt(elements[selectedElement].style.margin) || 0
-                    }
-                    onChange={(e) =>
-                      updateElementStyle("margin", `${e.target.value}px`)
-                    }
-                  />
-                  <span>{elements[selectedElement].style.margin}</span>
-                </div>
-              </div>
-
-                    <div className="txt">
-                      
-                    </div>
-
-              {elements[selectedElement].type === "text" && (
-                <>
-                  <div className="property-group rng">
-                    <label>Font Size</label>
+                  <div className="rngs">
                     <input
                       type="range"
-                      min="8"
-                      max="108"
+                      min="0"
+                      max="50"
                       value={
-                        parseInt(elements[selectedElement].style.fontSize) || 16
+                        parseInt(elements[selectedElement].style.margin) || 0
                       }
                       onChange={(e) =>
-                        updateElementStyle("fontSize", `${e.target.value}px`)
+                        updateElementStyle("margin", `${e.target.value}px`)
                       }
                     />
-                    <span>{elements[selectedElement].style.fontSize}</span>
-                  </div>
-
-                  <div className="property-group">
-                    <label>Font Weight</label>
-                    <select
-                      value={
-                        elements[selectedElement].style.fontWeight || "normal"
-                      }
-                      onChange={(e) =>
-                        updateElementStyle("fontWeight", e.target.value)
-                      }
-                    >
-                      <option value="normal">Normal</option>
-                      <option value="bold">Bold</option>
-                      <option value="lighter">Lighter</option>
-                    </select>
-                  </div>
-
-                  <div className="property-group">
-                    <label>Text Align</label>
-                    <select
-                      value={
-                        elements[selectedElement].style.textAlign || "left"
-                      }
-                      onChange={(e) =>
-                        updateElementStyle("textAlign", e.target.value)
-                      }
-                    >
-                      <option value="left">Left</option>
-                      <option value="center">Center</option>
-                      <option value="right">Right</option>
-                    </select>
-                  </div>
-                </>
-              )}
-
-              <div className="property-group">
-                <label>Position</label>
-                <div className="position-inputs">
-                  <div>
-                    <span>X:</span>
-                    <input
-                      type="number"
-                      value={Math.round(elements[selectedElement].position.x)}
-                      onChange={(e) => {
-                        const newElements = [...elements];
-                        newElements[selectedElement].position.x = parseInt(
-                          e.target.value
-                        );
-                        setElements(newElements);
-                      }}
-                    />
-                  </div>
-                  <div>
-                    <span>Y:</span>
-                    <input
-                      type="number"
-                      value={Math.round(elements[selectedElement].position.y)}
-                      onChange={(e) => {
-                        const newElements = [...elements];
-                        newElements[selectedElement].position.y = parseInt(
-                          e.target.value
-                        );
-                        setElements(newElements);
-                      }}
-                    />
+                    <span>{elements[selectedElement].style.margin}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="property-group">
-                <label>Size</label>
-                <div className="position-inputs">
-                  <div>
-                    <span>W:</span>
-                    <input
-                      type="number"
-                      value={Math.round(elements[selectedElement].width)}
-                      onChange={(e) => {
-                        const newElements = [...elements];
-                        newElements[selectedElement].width = parseInt(
-                          e.target.value
-                        );
-                        setElements(newElements);
-                      }}
-                    />
-                  </div>
-                  <div>
-                    <span>H:</span>
-                    <input
-                      type="number"
-                      value={Math.round(elements[selectedElement].height)}
-                      onChange={(e) => {
-                        const newElements = [...elements];
-                        newElements[selectedElement].height = parseInt(
-                          e.target.value
-                        );
-                        setElements(newElements);
-                      }}
-                    />
-                  </div>
-                </div>
+              <div className="mtxt">
+                {elements[selectedElement].type === "text" && (
+                  <>
+                    <div className="property-group rng">
+                      <label>Font Size</label>
+                      <div className="rngs">
+                        <input
+                          type="range"
+                          min="8"
+                          max="108"
+                          value={
+                            parseInt(
+                              elements[selectedElement].style.fontSize
+                            ) || 16
+                          }
+                          onChange={(e) =>
+                            updateElementStyle(
+                              "fontSize",
+                              `${e.target.value}px`
+                            )
+                          }
+                        />
+                        <span>{elements[selectedElement].style.fontSize}</span>
+                      </div>
+                    </div>
+
+                    <div className="property-group ts">
+                      <label>Font Weight</label>
+                      <select
+                        value={
+                          elements[selectedElement].style.fontWeight || "normal"
+                        }
+                        onChange={(e) =>
+                          updateElementStyle("fontWeight", e.target.value)
+                        }
+                      >
+                        <option value="normal">Normal</option>
+                        <option value="bold">Bold</option>
+                        <option value="lighter">Lighter</option>
+                      </select>
+                    </div>
+
+                    <div className="property-group ts">
+                      <label>Text Align</label>
+                      <select
+                        value={
+                          elements[selectedElement].style.textAlign || "left"
+                        }
+                        onChange={(e) =>
+                          updateElementStyle("textAlign", e.target.value)
+                        }
+                      >
+                        <option value="left">Left</option>
+                        <option value="center">Center</option>
+                        <option value="right">Right</option>
+                      </select>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           ) : (
