@@ -192,49 +192,85 @@ const FigmaLikeEditor = () => {
     setSelectedElement(elements.length);
   };
 
-  // Handle image upload via drag and drop
-  const handleImageDrop = (e) => {
-    e.preventDefault();
+  const handleImageUpload = (imageData) => {
+    // Get canvas center or default position if no canvas ref
+    let positionX = 100;
+    let positionY = 100;
 
-    if (e.dataTransfer.items) {
-      const files = [...e.dataTransfer.items]
-        .filter(
-          (item) => item.kind === "file" && item.type.startsWith("image/")
-        )
-        .map((item) => item.getAsFile());
-
-      files.forEach((file) => {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          const newImage = {
-            id: elements.length,
-            type: "image",
-            position: {
-              x:
-                e.clientX - canvasRef.current.getBoundingClientRect().left - 75,
-              y: e.clientY - canvasRef.current.getBoundingClientRect().top - 75,
-            },
-            width: 150,
-            height: 150,
-            content: event.target.result,
-            style: {
-              borderColor: "#cccccc",
-              borderWidth: "1px",
-              borderStyle: "solid",
-              borderRadius: "0px",
-              padding: "0px",
-              margin: "0px",
-            },
-          };
-
-          setElements([...elements, newImage]);
-          setSelectedElement(elements.length);
-        };
-        reader.readAsDataURL(file);
-      });
+    if (canvasRef.current) {
+      const canvasRect = canvasRef.current.getBoundingClientRect();
+      positionX = canvasRect.width / 2 - 75;
+      positionY = canvasRect.height / 2 - 75;
     }
+
+    const newImage = {
+      id: elements.length,
+      type: "image",
+      position: {
+        x: positionX,
+        y: positionY,
+      },
+      width: 150,
+      height: 150,
+      content: imageData,
+      style: {
+        borderColor: "#cccccc",
+        borderWidth: "0px",
+        borderStyle: "solid",
+        borderRadius: "0px",
+        padding: "0px",
+        margin: "0px",
+      },
+    };
+
+    setElements([...elements, newImage]);
+    setSelectedElement(elements.length);
   };
 
+  const ImageUploadProperty = ({ onImageUpload }) => {
+    const fileInputRef = React.useRef(null);
+
+    const handleFileChange = (e) => {
+      const files = Array.from(e.target.files);
+
+      files.forEach((file) => {
+        if (file.type.startsWith("image/")) {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            onImageUpload(event.target.result);
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    };
+
+    const handleUploadClick = () => {
+      fileInputRef.current.click();
+    };
+
+    return (
+      <div
+        className="image-upload-property"
+        style={{
+          margin: "1.25rem 0 0 0",
+          padding: "1.25rem 0 0 0 ",
+          borderBottom:"none"
+        }}
+      >
+        <h3>Image Frame</h3>
+        <input
+          type="file"
+          ref={fileInputRef}
+          onChange={handleFileChange}
+          accept="image/*"
+          style={{ display: "none" }}
+        />
+        <button onClick={handleUploadClick} className="upload-button">
+          Upload Image
+        </button>
+      </div>
+    );
+  };
   // Prevent default drag behavior
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -388,14 +424,6 @@ const FigmaLikeEditor = () => {
           </div>
         )}
 
-        {element.type === "image" && (
-          <img
-            src={element.content}
-            alt="User uploaded"
-            style={{ width: "100%", height: "100%", objectFit: "contain" }}
-          />
-        )}
-
         {isSelected && (
           <>
             <div className="resize-handle se" data-direction="se"></div>
@@ -410,16 +438,7 @@ const FigmaLikeEditor = () => {
 
   return (
     <div className="editor-container">
-      {/* <header className="editor-header">
-        <div className="logo">UNIFUSION</div>
-        <div className="header-actions">
-          <button onClick={() => window.alert("Preview mode would open here")}>
-            Preview
-          </button>
-          <button onClick={() => window.alert("Design saved!")}>Save</button>
-        </div>
-      </header> */}
-      <EditorHeader elements={elements}/>
+      <EditorHeader elements={elements} />
       <div className="editor-content">
         <div className="toolbar">
           <div>
@@ -427,7 +446,7 @@ const FigmaLikeEditor = () => {
             <button onClick={() => addElement("text")}>Text</button>
             <button onClick={() => addElement("container")}>Container</button>
             <button onClick={() => addElement("button")}>Button</button>
-            <button onClick={() => addElement("image")}>Image</button>
+            <ImageUploadProperty onImageUpload={handleImageUpload} />
           </div>
 
           <div>
@@ -457,7 +476,7 @@ const FigmaLikeEditor = () => {
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseUp}
-          onDrop={handleImageDrop}
+          // onDrop={handleImageDrop}
           onDragOver={handleDragOver}
         >
           {elements.map((element, index) => renderElement(element, index))}
