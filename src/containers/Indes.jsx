@@ -267,19 +267,93 @@ const FigmaLikeEditor = () => {
 
     setElements(newElements);
   };
-  const generateAiSuggestions = () => {
-    const suggestions = [
-      "Try adding more contrast between your text and background colors",
-      "Consider aligning your elements to a grid for better visual flow",
-      // "Your current spacing between elements could be more consistent",
-      // "This layout would work better on mobile with a column arrangement",
-      // "Consider using a complementary color for your call-to-action buttons",
-    ];
+  // const generateAiSuggestions = () => {
+  //   const suggestions = [
+  //     "Try adding more contrast between your text and background colors",
+  //     "Consider aligning your elements to a grid for better visual flow",
+  //   ];
 
-    setAiSuggestions(suggestions);
-    setShowSuggestions(true);
+  //   setAiSuggestions(suggestions);
+  //   setShowSuggestions(true);
+  // };
+  const generateAiSuggestions = async () => {
+    try {
+      const apiKey = 'fa2ab5ed7294c5a01357c96de9fd83fdb9170f1e1564514b44b90f2674db0ba0';
+  
+      if (!apiKey) {
+        throw new Error("API key is missing. Please set your API key.");
+      }
+  
+      const response = await fetch("https://api.together.xyz/v1/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
+          prompt:
+            "Generate exactly 2 helpful UI/UX design suggestions.Length of each suggestion should be  10-12 words only. Each suggestion should be a single sentence with similar length. Format as a JSON array of strings.",
+          max_tokens: 150,
+          temperature: 0.7,
+          top_p: 0.9,
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Request failed with status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+  
+      // Parse the response to extract the suggestions
+      let suggestions;
+      try {
+        // Try to parse the response as JSON directly
+        const responseText = data.choices[0].text.trim();
+        
+        // Clean up responseText to ensure it’s valid JSON
+        const cleanedText = responseText.replace(/\\n/g, '').replace(/'/g, '"');
+        
+        suggestions = JSON.parse(cleanedText);
+      } catch (e) {
+        // If direct parsing fails, try to extract JSON from text
+        const responseText = data.choices[0].text.trim();
+        const jsonMatch = responseText.match(/\[.*\]/s);
+  
+        if (jsonMatch) {
+          suggestions = JSON.parse(jsonMatch[0]);
+        } else {
+          // Fallback: split by newlines and take first two lines
+          suggestions = responseText
+            .split("\n")
+            .filter((line) => line.trim().length > 0)
+            .slice(0, 2)
+            .map((line) => line.replace(/^["'\d\s-.*•]+/, "").trim());
+        }
+      }
+  
+      // Ensure we have exactly 2 suggestions
+      suggestions = suggestions.slice(0, 2);
+      if (suggestions.length < 2) {
+        suggestions.push(
+          "Ensure your design maintains consistency across all pages and elements."
+        );
+      }
+  
+      setAiSuggestions(suggestions);
+      setShowSuggestions(true);
+    } catch (error) {
+      console.error("Error generating AI suggestions:", error);
+      // Fallback suggestions in case of API failure
+      setAiSuggestions([
+        "Try adding more contrast between your text and background colors",
+        "Consider aligning your elements to a grid for better visual flow",
+      ]);
+      setShowSuggestions(true);
+    }
   };
-
+  
   // Render element on canvas
   const renderElement = (element, index) => {
     const isSelected = selectedElement === index;

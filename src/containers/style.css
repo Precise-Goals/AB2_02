@@ -239,11 +239,14 @@ body {
   position: absolute;
   bottom: 0%;
   left: 0%;
-  width: 350px;
-  border-radius: 0;
+  width: 310px;
   z-index: 100;
-  transform: translate(0%, -25%);
-  padding: 0 1rem;
+  transform: translate(0%, -5%);
+  border-radius: 2rem;
+  box-shadow: 0 0 3rem 0.1px #ffdf0030 inset;
+  border: 1px solid #ffdf00;
+  padding: 1rem 0.75rem;
+  margin: 0 20px;
 }
 
 .suggestions-header {
