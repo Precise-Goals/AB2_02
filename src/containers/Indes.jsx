@@ -215,7 +215,7 @@ const FigmaLikeEditor = () => {
       content: imageData,
       style: {
         borderColor: "#cccccc",
-        borderWidth: "0px",
+        borderWidth: "1px",
         borderStyle: "solid",
         borderRadius: "0px",
         padding: "0px",
@@ -254,7 +254,7 @@ const FigmaLikeEditor = () => {
         style={{
           margin: "1.25rem 0 0 0",
           padding: "1.25rem 0 0 0 ",
-          borderBottom:"none"
+          borderBottom: "none",
         }}
       >
         <h3>Image Frame</h3>
@@ -423,6 +423,18 @@ const FigmaLikeEditor = () => {
             {element.content}
           </div>
         )}
+        {element.type === "image" && (
+          <img
+            src={element.content}
+            alt="Canvas element"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+              pointerEvents: "none", // Prevents the image from capturing mouse events
+            }}
+          />
+        )}
 
         {isSelected && (
           <>
@@ -443,17 +455,55 @@ const FigmaLikeEditor = () => {
         <div className="toolbar">
           <div>
             <h3>Elements</h3>
-            <button onClick={() => addElement("text")}>Text</button>
+            <div
+              className="tbhor"
+              style={{
+                display: "flex",
+                padding: "0.25rem 0",
+                margin: "0.5rem 0",
+                textAlign: "center",
+                gap: "1em",
+              }}
+            >
+              <button onClick={() => addElement("text")}>Text</button>
+              <button onClick={() => addElement("button")}>Button</button>
+            </div>
             <button onClick={() => addElement("container")}>Container</button>
-            <button onClick={() => addElement("button")}>Button</button>
             <ImageUploadProperty onImageUpload={handleImageUpload} />
           </div>
 
           <div>
             <h3>Components</h3>
-            <button onClick={() => addElement("card")}>Card</button>
-            <button onClick={() => addElement("navbar")}>Navbar</button>
-            <button onClick={() => addElement("form")}>Form</button>
+            <button
+              onClick={() => {
+                window.alert(
+                  "Component is under the development. however you may proceed with ai and basic features."
+                );
+                addElement("card");
+              }}
+            >
+              Card
+            </button>
+            <button
+              onClick={() => {
+                window.alert(
+                  "Component is under the development. however you may proceed with ai and basic features."
+                );
+                addElement("navbar");
+              }}
+            >
+              Navbar
+            </button>
+            <button
+              onClick={() => {
+                window.alert(
+                  "Component is under the development. however you may proceed with ai and basic features."
+                );
+                addElement("form");
+              }}
+            >
+              Form
+            </button>
           </div>
 
           <div
@@ -736,6 +786,7 @@ const FigmaLikeEditor = () => {
                   </>
                 )}
               </div>
+              {/* <ImageUploadProperty onImageUpload={handleImageUpload} /> */}
             </div>
           ) : (
             <p className="no-selection-message">
