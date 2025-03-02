@@ -2,12 +2,12 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 
 const markdownContent = `
-# Feasibility Analysis
+## Feasibility Analysis
 
-## Scalability
+### Scalability
 - **Ability to handle increasing data volumes and interactions**
 
-## Challenges
+### Challenges
 - **Potential obstacles and issues arising from implementation**
 - **Infrastructure Requirements:** Necessary systems and resources for implementation
 - **Optimize AI Algorithms:** Improve speed and accuracy in design suggestions
@@ -21,9 +21,9 @@ const markdownContent = `
 
 ---
 
-# Overview of the Solution
+## Overview of the Solution
 
-## Features
+### Features
 - **Faster, High-Quality UI Development**
 - **Greater Customization**
 - **Improved Collaboration**
@@ -33,7 +33,7 @@ const markdownContent = `
 - **Enhanced Efficiency**
 - **Comprehensive Component Library**
 
-## How it Addresses the Problem
+### How it Addresses the Problem
 - **Real-Time Collaboration:** Enabling teams to work together in real-time on design projects
 - **Accessibility Enhancements:** Implementing features that make interfaces accessible to all users
 - **AI Layout Improvements:** Using AI to enhance layout designs for better user experience
@@ -41,9 +41,9 @@ const markdownContent = `
 
 ---
 
-# Innovation and Uniqueness
+## Innovation and Uniqueness
 
-## Intelligent Suggestions
+### Intelligent Suggestions
 - **Design Recommendations:** For design improvements
 - **Automatic Responsiveness:** Adapts designs to various screen sizes automatically
 - **Seamless Collaboration:** Facilitates teamwork and communication among designers
@@ -52,46 +52,48 @@ const markdownContent = `
 
 ---
 
-# Key Technologies/Frameworks
+## Key Technologies/Frameworks
 
-## Front-end
+### Front-end
 - **JavaScript framework:** React, Angular
 - **HTML5 and CSS3:** For UI rendering
 - **Drag-and-Drop library:** React-Draggable
 
-## Back-end
+### Back-end
 - **Node.js or Python:** For server-side logic
 - **Machine Learning framework:** TensorFlow, PyTorch
 - **Database:** For storing user designs and component library
 
-## AI Engine
+### AI Engine
 - **Machine Learning algorithms:** Neural networks, decision trees
 - **NLP library:** spacy
 - **Computer Vision library:** OpenCV
 
 ---
 
-# Integration & Scalability
+## Integration & Scalability
 
-## Technologies
+### Technologies
 - **Firebase:** Provides backend support for managing data and user interactions
 - **Scalefusion:** Offers device management solutions to handle increasing devices
 - **Full-Stack Web Development:** Facilitates comprehensive web solutions for performance and security
 
-## Development Phases
+### Development Phases
 1. **Core UI Editor Development:** Establishing the foundational elements
 2. **Integrate AI Chatbot:** Adding AI capabilities for interaction
 3. **Real-time Feedback:** Implementing features for immediate user feedback
 4. **Enhance Platform:** Incorporating advanced features and components
 5. **Finalize & Optimize:** Conducting final optimizations and customizations
 `;
-
 export const Docs = () => {
   return (
     <div className="prose max-w-none">
       <div className="lcon">
         <h1>UNIFUSION Documentation</h1>
-        <p>Documentation is under the development, however further features are available.</p>
+        <p>
+          Documentation is under the development, however further features are
+          available.
+        </p>
       </div>
       <ReactMarkdown>{markdownContent}</ReactMarkdown>
     </div>
