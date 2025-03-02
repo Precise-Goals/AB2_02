@@ -5,16 +5,17 @@ import Index from "./containers/Indes";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { MainLand } from "./components/MainLand";
 import { Navbar } from "./components/Navbar";
+import './App.css'
 import { Footer } from "./components/Footer";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter >
       <DndProvider backend={HTML5Backend}>
         <Navbar />
         <Routes>
           <Route path="/" element={<MainLand />} />
-          <Route path="/unifusion-ui-editor" element={<Index />} />
+          <Route path="/unifusion-ui-builder" element={<Index />} />
         </Routes>
         <Footer />
       </DndProvider>
