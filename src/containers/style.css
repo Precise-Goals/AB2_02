@@ -13,6 +13,7 @@ body {
 
 .editor-container {
   display: flex;
+  border-bottom: 2px solid lightgray;
   flex-direction: column;
   height: 100vh;
   overflow: hidden;

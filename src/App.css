@@ -40,3 +40,10 @@
 .read-the-docs {
   color: #888;
 }
+
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}

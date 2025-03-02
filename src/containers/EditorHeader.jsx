@@ -81,7 +81,6 @@ const EditorHeader = ({ elements, designData, setDesignData }) => {
   return (
     <>
       <header className="editor-header">
-        <div className="logo">UNIFUSION</div>
         <div className="header-actions">
           <button 
             className={`preview-btn ${previewMode ? 'active' : ''}`} 
