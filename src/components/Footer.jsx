@@ -16,9 +16,6 @@ export const Footer = () => {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/what-is-unifusion">About Us</Link>
-        </li>
-        <li>
           <Link to="/unifusion-documentation">Documentation</Link>
         </li>
         <li>
