@@ -125,7 +125,7 @@ export const ChatBot = () => {
       <div className="robo">
         <Robo />
       </div>
-      <h1 className="ask">Ask your Querries</h1>
+      <h1 className="ask">Ask your Queries</h1>
       <div className="chtbot">
         <div
           style={{
