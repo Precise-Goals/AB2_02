@@ -268,5 +268,15 @@ span.user-email {
 .projects-grid {
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
+  gap: 2em;
+}
+.project-card {
+  padding: 2% 2%;
+  background: #e2e2e2;
+  justify-self: flex-start;
+  border-radius: 3rem;
+}
+.project-preview {
+  border-radius: 2rem;
 }

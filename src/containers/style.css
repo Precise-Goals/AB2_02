@@ -265,7 +265,7 @@ body {
   left: 0%;
   width: 310px;
   z-index: 100;
-  transform: translate(0%, -25%);
+  transform: translate(0%, 15%);
   border-radius: 2rem;
   box-shadow: 0 0 3rem 0.1px #ffdf0030 inset;
   border: 1px solid #ffdf00;

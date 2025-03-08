@@ -191,7 +191,7 @@ const FigmaLikeEditor = () => {
           ? 500
           : 150,
       style: {
-        backgroundColor: type === "text" ? "transparent" : "#f0f0f0",
+        backgroundColor: type === "text" ? "ffffff00" : "#f0f0f0",
         color: "#000000",
         borderColor: "#cccccc",
         borderWidth: "5px",
@@ -374,115 +374,49 @@ const FigmaLikeEditor = () => {
         body: JSON.stringify({
           model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
           prompt:
-            "Generate exactly 2 helpful UI/UX design suggestions.Length of each suggestion should be  10-12 words only. Each suggestion should be a single sentence with similar length. Format as a JSON array of strings.",
+            "Generate exactly 2 helpful UI/UX design suggestions. Length of each suggestion should be 10-12 words only. Each suggestion should be a single sentence with similar length. Format as a JSON array of strings.",
           max_tokens: 150,
           temperature: 0.7,
           top_p: 0.9,
         }),
       });
-      const loadProjectFromFirestore = async (projectId) => {
-        try {
-          setIsLoading(true);
-          const projectRef = doc(db, "projects", projectId);
-          const projectSnap = await getDoc(projectRef);
 
-          if (projectSnap.exists()) {
-            const projectData = projectSnap.data();
-            setElements(projectData.elements || []);
-            setSelectedElement(null);
-          } else {
-            console.error("No such project exists!");
-          }
-        } catch (error) {
-          console.error("Error loading project:", error);
-        } finally {
-          setIsLoading(false);
-        }
-      };
-      const getUserProjects = async (userId) => {
-        try {
-          setIsLoading(true);
-          const projectsRef = collection(db, "projects");
-          const querySnapshot = await getDocs(projectsRef);
-
-          const projects = [];
-          querySnapshot.forEach((doc) => {
-            if (doc.data().userId === userId) {
-              projects.push({
-                id: doc.id,
-                ...doc.data(),
-              });
-            }
-          });
-
-          return projects;
-        } catch (error) {
-          console.error("Error fetching projects:", error);
-          return [];
-        } finally {
-          setIsLoading(false);
-        }
-      };
       if (!response.ok) {
         throw new Error(`Request failed with status: ${response.status}`);
       }
 
       const data = await response.json();
 
-      // Parse the response to extract the suggestions
-      let suggestions;
+      // Ensure the response is valid JSON
+      let suggestions = [];
       try {
-        // Try to parse the response as JSON directly
         const responseText = data.choices[0].text.trim();
-
-        // Clean up responseText to ensure it’s valid JSON
         const cleanedText = responseText.replace(/\\n/g, "").replace(/'/g, '"');
 
+        // Attempt to parse the cleaned text as JSON
         suggestions = JSON.parse(cleanedText);
       } catch (e) {
-        // If direct parsing fails, try to extract JSON from text
-        <EditorHeader
-          elements={elements}
-          loadProject={loadProjectFromFirestore}
-          getUserProjects={getUserProjects}
-          isLoading={isLoading}
-        />;
-        {isLoading && (
-          <div className="loading-overlay">
-            <div className="loading-spinner">Loading...</div>
-          </div>
-        )}
-        const responseText = data.choices[0].text.trim();
-        const jsonMatch = responseText.match(/\[.*\]/s);
-
-        if (jsonMatch) {
-          suggestions = JSON.parse(jsonMatch[0]);
-        } else {
-          // Fallback: split by newlines and take first two lines
-          suggestions = responseText
-            .split("\n")
-            .filter((line) => line.trim().length > 0)
-            .slice(0, 2)
-            .map((line) => line.replace(/^["'\d\s-.*•]+/, "").trim());
-        }
+        console.error("Error parsing AI suggestions:", e);
+        // Fallback suggestions in case of parsing failure
+        suggestions = [
+          "Try adding more contrast between your text and background colors.",
+          "Consider aligning your elements to a grid for better visual flow.",
+        ];
       }
 
-      // Ensure we have exactly 2 suggestions
-      suggestions = suggestions.slice(0, 2);
-      if (suggestions.length < 2) {
-        suggestions.push(
-          "Ensure your design maintains consistency across all pages and elements."
-        );
+      // Ensure suggestions is an array and limit to 2 suggestions
+      if (!Array.isArray(suggestions)) {
+        suggestions = [];
       }
 
-      setAiSuggestions(suggestions);
+      setAiSuggestions(suggestions.slice(0, 2)); // Limit to 2 suggestions
       setShowSuggestions(true);
     } catch (error) {
       console.error("Error generating AI suggestions:", error);
       // Fallback suggestions in case of API failure
       setAiSuggestions([
-        "Try adding more contrast between your text and background colors",
-        "Consider aligning your elements to a grid for better visual flow",
+        "Try adding more contrast between your text and background colors.",
+        "Consider aligning your elements to a grid for better visual flow.",
       ]);
       setShowSuggestions(true);
     }

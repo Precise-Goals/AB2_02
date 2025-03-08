@@ -18,7 +18,7 @@ export default function Home() {
       <Spline
         id="hw"
         style={{
-          height: "90vh",
+          height: "80vh",
           width: "100vw",
           position: "absolute",
           zIndex: " 0",

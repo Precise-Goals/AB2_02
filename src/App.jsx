@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import Index from "./containers/Indes";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { MainLand } from "./components/MainLand";
 import { Navbar } from "./components/Navbar";
 import "./App.css";
@@ -69,10 +69,17 @@ const App = () => {
         <DndProvider backend={HTML5Backend}>
           <Navbar />
           <Routes>
+            <Route path="*" element={<Navigate to="/" />} />
             <Route path="/" element={<MainLand />} />
             <Route path="/unifusion-login" element={<Auth />} />
-            <Route path="/unifusion-dashboard/:userId" element={<Dashboard />} />
-            <Route path="/unifusion-ui-builder" element={<Index />} />
+            <Route
+              path="/unifusion-dashboard/:userId"
+              element={<Dashboard />}
+            />
+            <Route
+              path="/unifusion-ui-builder/:projectId"
+              element={<Index />}
+            />
             <Route path="/unifusion-team" element={<Team />} />
             <Route path="/unifusion-ai" element={<ChatBot />} />
             <Route path="/unifusion-space" element={<Library />} />

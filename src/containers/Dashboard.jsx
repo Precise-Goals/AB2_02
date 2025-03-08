@@ -3,13 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { db } from "../Firebase";
 import {
   collection,
+  addDoc,
+  getDocs,
   query,
   where,
-  getDocs,
   deleteDoc,
   doc,
   orderBy,
 } from "firebase/firestore";
+
 import { getAuth, signOut } from "firebase/auth";
 import "./Dashboard.css"; // We'll create this next
 
@@ -74,8 +76,28 @@ const Dashboard = () => {
   };
 
   // Create a new project
-  const createNewProject = () => {
-    navigate("/unifusion-ui-builder");
+  // Create a new project
+  const createNewProject = async () => {
+    try {
+      // Generate a new project in Firestore
+      const newProject = {
+        name: "Untitled Project",
+        userId: user.uid,
+        userEmail: user.email,
+        elements: [],
+        createdAt: new Date(),
+        lastModified: new Date(),
+      };
+
+      const docRef = await addDoc(collection(db, "designs"), newProject); // Firestore generates an ID
+      const newProjectId = docRef.id;
+
+      // Navigate to the new project editor using the generated project ID
+      navigate(`/unifusion-ui-builder/${newProjectId}`);
+    } catch (error) {
+      console.error("Error creating a new project:", error);
+      alert("Failed to create a new project. Please try again!");
+    }
   };
 
   // Open existing project
