@@ -268,7 +268,7 @@ button.dlay:hover {
 }
 
 .min-h-screen.bg-gray-100.flex.items-center.justify-center {
-  background: url(https://static.vecteezy.com/system/resources/previews/010/375/569/non_2x/liquid-flow-purple-blue-3d-neon-lava-lamp-geometric-background-for-banner-card-ui-design-or-wallpaper-gradient-mesh-bubble-in-the-shape-of-a-wave-drop-fluid-colorful-abstract-shapes-free-vector.jpg);
+  background: black;
   background-size: cover;
   padding: 1% 10%;
   border-radius: 10rem;
@@ -288,14 +288,14 @@ button.dlay:hover {
 h2.text-2xl.font-bold.mb-6.text-center {
   font-family: "H";
   font-size: 4rem;
-  width: 70%;
+  width: 75;
   align-self: start;
 }
 
 form div {
   display: flex;
   flex-direction: row;
-  font-size: 30px;
+  font-size: 20px;
   gap: 1em;
   width: 100%;
   white-space: nowrap;
@@ -304,7 +304,7 @@ form div {
 }
 
 form div input {
-  font-size: 21px;
+  font-size: 20px;
   background: transparent;
   border-bottom: 2px solid white;
   color: white;
@@ -321,10 +321,17 @@ button.w-full.bg-blue-600.text-white.font-bold.py-2.px-4.rounded.focus\:outline-
   padding: 1em 3em;
   font-size: 21px;
   border-radius: 5rem;
+  cursor: pointer;
   align-self: flex-start;
   background: transparent;
   border: 2px solid white;
   color: white;
+  transition: all ease 0.25s;
+}
+
+button.w-full.bg-blue-600.text-white.font-bold.py-2.px-4.rounded.focus\:outline-none.focus\:ring-2.focus\:ring-blue-500.hover\:bg-blue-700:hover{
+  background-color: white;
+  color: black;
 }
 
 form {

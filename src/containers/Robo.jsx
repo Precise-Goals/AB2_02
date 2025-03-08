@@ -131,7 +131,6 @@ export const ChatBot = () => {
           style={{
             width: "100%",
             height: "400px",
-            overflowY: "auto",
             border: " 1px solid #fff",
             padding: " 20px",
             margin: " 4% 0",
@@ -162,7 +161,7 @@ export const ChatBot = () => {
               </div>
             </div>
           ))}
-          {isLoading && <div>Processing...</div>}
+          {isLoading && <div className="prcs" >Processing...</div>}
         </div>
         <form onSubmit={handleSendMessage}>
           <textarea

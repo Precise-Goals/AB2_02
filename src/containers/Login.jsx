@@ -212,7 +212,23 @@ const Login = () => {
             }`}
             disabled={loading}
           >
-            {loading ? "Processing..." : isSignUp ? "Sign Up" : "Sign In"}
+            {loading ? (
+              <div
+                style={{
+                  background: "black",
+                  color: "white",
+                  fontSize: "20px",
+                  textAlign: "center",
+                }}
+              >
+                {" "}
+                "Processing..."
+              </div>
+            ) : isSignUp ? (
+              "Sign Up"
+            ) : (
+              "Sign In"
+            )}
           </button>
         </form>
 
