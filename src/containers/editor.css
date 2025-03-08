@@ -1,9 +1,9 @@
 /* Header styles */
 .editor-header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  padding: 1rem 9.5rem;
+  padding: 1rem 6.5rem;
   border-top: 2px solid lightgray;
   border-bottom: 2px solid lightgray;
   color: white;
@@ -35,6 +35,7 @@
 
 .header-actions button:hover {
   color: black;
+  border: 1px solid #333;
   background-color: #ffffff;
 }
 
@@ -116,4 +117,12 @@
 }
 .rngs {
   width: 100%;
+}
+input.project-name-input {
+  border: none;
+  outline: none;
+  border-bottom: 2px solid gray;
+  line-height: 2.5em;
+  font-size: 18px;
+  padding: 0 0%;
 }

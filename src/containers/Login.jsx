@@ -18,23 +18,19 @@ const Login = () => {
 
   // Form validation
   const validateForm = () => {
-    // Reset error
     setError("");
 
-    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setError("Please enter a valid email address");
       return false;
     }
 
-    // Password validation
     if (password.length < 6) {
       setError("Password must be at least 6 characters long");
       return false;
     }
 
-    // For sign up, check if passwords match
     if (isSignUp && password !== confirmPassword) {
       setError("Passwords do not match");
       return false;
@@ -51,13 +47,16 @@ const Login = () => {
 
     setLoading(true);
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      // Successful login - navigate to the UI builder
-      navigate("/unifusion-ui-builder");
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const userId = userCredential.user.uid;
+
+      navigate(`/unifusion-dashboard/${userId}`);
     } catch (error) {
       console.error("Sign-in error:", error);
-
-      // Handle different Firebase auth errors
       switch (error.code) {
         case "auth/user-not-found":
           setError("No account found with this email");
@@ -84,13 +83,16 @@ const Login = () => {
 
     setLoading(true);
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      // Successful registration - navigate to the UI builder
-      navigate("/unifusion-ui-builder");
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const userId = userCredential.user.uid;
+
+      navigate(`/unifusion-dashboard/${userId}`);
     } catch (error) {
       console.error("Sign-up error:", error);
-
-      // Handle different Firebase auth errors
       switch (error.code) {
         case "auth/email-already-in-use":
           setError("An account with this email already exists");
@@ -104,32 +106,6 @@ const Login = () => {
         default:
           setError("Failed to create account. Please try again");
       }
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Handle password reset
-  const handleForgotPassword = async () => {
-    if (!email) {
-      setError("Please enter your email address to reset password");
-      return;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      setError("Please enter a valid email address");
-      return;
-    }
-
-    setLoading(true);
-    try {
-      await sendPasswordResetEmail(auth, email);
-      setError("");
-      alert("Password reset email sent. Please check your inbox");
-    } catch (error) {
-      console.error("Password reset error:", error);
-      setError("Failed to send password reset email");
     } finally {
       setLoading(false);
     }
@@ -212,52 +188,26 @@ const Login = () => {
             }`}
             disabled={loading}
           >
-            {loading ? (
-              <div
-                style={{
-                  background: "black",
-                  color: "white",
-                  fontSize: "20px",
-                  textAlign: "center",
-                }}
-              >
-                {" "}
-                "Processing..."
-              </div>
-            ) : isSignUp ? (
-              "Sign Up"
-            ) : (
-              "Sign In"
-            )}
+            {loading ? "Processing..." : isSignUp ? "Sign Up" : "Sign In"}
           </button>
         </form>
 
         {!isSignUp && (
           <div className="mt-4 text-center">
             <button
-              onClick={handleForgotPassword}
-              className="text-blue-600 hover:text-blue-800 text-sm"
+              onClick={() => {
+                setIsSignUp(!isSignUp);
+                setError("");
+              }}
+              className="text-blue-600 hover:text-blue-800"
               disabled={loading}
             >
-              Forgot Password?
+              {isSignUp
+                ? "Already have an account? Sign In"
+                : "Don't have an account? Sign Up"}
             </button>
           </div>
         )}
-
-        <div className="mt-6 text-center">
-          <button
-            onClick={() => {
-              setIsSignUp(!isSignUp);
-              setError("");
-            }}
-            className="text-blue-600 hover:text-blue-800"
-            disabled={loading}
-          >
-            {isSignUp
-              ? "Already have an account? Sign In"
-              : "Don't have an account? Sign Up"}
-          </button>
-        </div>
       </div>
     </div>
   );

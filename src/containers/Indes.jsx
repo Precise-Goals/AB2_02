@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./style.css";
+import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase"; // Ensure you have firebase.js with proper config
 import EditorHeader from "./EditorHeader";
 // import { generateAiSuggestions } from "./AI";
 
@@ -7,6 +9,7 @@ import EditorHeader from "./EditorHeader";
 const FigmaLikeEditor = () => {
   const [elements, setElements] = useState([]);
   const [selectedElement, setSelectedElement] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const [isResizing, setIsResizing] = useState(false);
@@ -377,7 +380,49 @@ const FigmaLikeEditor = () => {
           top_p: 0.9,
         }),
       });
+      const loadProjectFromFirestore = async (projectId) => {
+        try {
+          setIsLoading(true);
+          const projectRef = doc(db, "projects", projectId);
+          const projectSnap = await getDoc(projectRef);
 
+          if (projectSnap.exists()) {
+            const projectData = projectSnap.data();
+            setElements(projectData.elements || []);
+            setSelectedElement(null);
+          } else {
+            console.error("No such project exists!");
+          }
+        } catch (error) {
+          console.error("Error loading project:", error);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      const getUserProjects = async (userId) => {
+        try {
+          setIsLoading(true);
+          const projectsRef = collection(db, "projects");
+          const querySnapshot = await getDocs(projectsRef);
+
+          const projects = [];
+          querySnapshot.forEach((doc) => {
+            if (doc.data().userId === userId) {
+              projects.push({
+                id: doc.id,
+                ...doc.data(),
+              });
+            }
+          });
+
+          return projects;
+        } catch (error) {
+          console.error("Error fetching projects:", error);
+          return [];
+        } finally {
+          setIsLoading(false);
+        }
+      };
       if (!response.ok) {
         throw new Error(`Request failed with status: ${response.status}`);
       }
@@ -396,6 +441,17 @@ const FigmaLikeEditor = () => {
         suggestions = JSON.parse(cleanedText);
       } catch (e) {
         // If direct parsing fails, try to extract JSON from text
+        <EditorHeader
+          elements={elements}
+          loadProject={loadProjectFromFirestore}
+          getUserProjects={getUserProjects}
+          isLoading={isLoading}
+        />;
+        {isLoading && (
+          <div className="loading-overlay">
+            <div className="loading-spinner">Loading...</div>
+          </div>
+        )}
         const responseText = data.choices[0].text.trim();
         const jsonMatch = responseText.match(/\[.*\]/s);
 

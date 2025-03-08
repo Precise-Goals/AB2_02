@@ -1,0 +1,272 @@
+.dashboard-container {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e1e4e8;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-logo h1 {
+  font-size: 30px;
+  font-weight: bold;
+  color: black;
+  margin: 2% 0;
+  font-family: "H";
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-email {
+  font-size: 14px;
+  color: #555;
+}
+
+.logout-btn {
+  background-color: black;
+    color: white;
+  border: 1px solid #000000;
+  border-radius: 1em;
+  padding: 1em 3em;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+.logout-btn:hover {
+  background-color: #f2f7fe;
+  color: black;
+}
+
+.dashboard-content {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.projects-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.projects-header h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #333;
+}
+
+.projects-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.search-input {
+  padding: 8px 12px;
+  border: 1px solid #e1e4e8;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 250px;
+}
+
+.new-project-btn {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  border-radius: 1em;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition:  all ease 0.2s;
+}
+
+.new-project-btn:hover {
+  background-color: #000000;
+  color: white;
+}
+
+.project-card {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.project-preview {
+  height: 160px;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.preview-placeholder {
+  color: #666;
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.has-elements,
+.no-elements {
+  font-size: 14px;
+  color: #666;
+}
+
+.project-info {
+  padding: 16px;
+}
+
+.project-name {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.project-date {
+  font-size: 12px;
+  color: #666;
+  margin: 0 0 12px 0;
+}
+
+.project-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.open-btn,
+.delete-btn {
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.open-btn {
+  background-color: #020406;
+  color: white;
+  border: none;
+  flex: 1;
+}
+
+.open-btn:hover {
+  background-color: #000000;
+}
+
+.delete-btn {
+  background-color: transparent;
+  color: #e53935;
+  border: 1px solid #e53935;
+}
+
+.delete-btn:hover {
+  background-color: #ffebee;
+}
+
+.delete-confirm {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.delete-confirm span {
+  font-size: 12px;
+  color: #e53935;
+}
+
+.confirm-yes,
+.confirm-no {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.confirm-yes {
+  background-color: #e53935;
+  color: white;
+  border: none;
+}
+
+.confirm-no {
+  background-color: transparent;
+  color: #666;
+  border: 1px solid #ccc;
+}
+
+.loading-projects {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.no-projects {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.create-first-project {
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 14px;
+  margin-top: 16px;
+  cursor: pointer;
+}
+.dashboard-container {
+  padding: 4% 8%;
+}
+span.user-email {
+  font-size: 25px;
+  margin-right: 1em;
+  color: gray;
+  font-style: italic;
+  font-weight: 200;
+}
+.projects-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

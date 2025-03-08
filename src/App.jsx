@@ -13,6 +13,7 @@ import { Team } from "./components/Team";
 import { Library } from "./components/Library";
 import Auth from "./containers/Login";
 import { ChatBot } from "./containers/Robo";
+import Dashboard from "./containers/Dashboard";
 
 const App = () => {
   const [isMuted, setIsMuted] = useState(true);
@@ -70,6 +71,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<MainLand />} />
             <Route path="/unifusion-login" element={<Auth />} />
+            <Route path="/unifusion-dashboard/:userId" element={<Dashboard />} />
             <Route path="/unifusion-ui-builder" element={<Index />} />
             <Route path="/unifusion-team" element={<Team />} />
             <Route path="/unifusion-ai" element={<ChatBot />} />

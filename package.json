@@ -24,6 +24,7 @@
     "react-router-dom": "^7.2.0",
     "react-spline": "^1.2.1",
     "styled-components": "^6.1.15",
+    "three": "^0.125.0",
     "together-ai": "^0.13.0"
   },
   "devDependencies": {
