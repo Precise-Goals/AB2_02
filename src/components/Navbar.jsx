@@ -19,7 +19,19 @@ export const Navbar = () => {
           <Link to="/unifusion-space">Libraries</Link>
         </li>
         <li>
-          <Link to="/unifusion-ui-builder">Get Started</Link>
+          <Link to="/unifusion-login">Get Started</Link>
+        </li>
+        <li>
+          <Link
+            to="/unifusion-ai"
+            className="aisa"
+            style={{
+              color: "transparent",
+              fontWeight: "700",
+            }}
+          >
+            Unifusion Ai
+          </Link>
         </li>
       </ul>
     </nav>

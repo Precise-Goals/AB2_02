@@ -1,7 +1,6 @@
 import Spline from "@splinetool/react-spline";
 import { useEffect, useState } from "react";
 
-
 export default function Home() {
   const [hasClicked, setHasClicked] = useState(false);
 
@@ -24,7 +23,7 @@ export default function Home() {
           position: "absolute",
           zIndex: " 0",
         }}
-        scene="https://prod.spline.design/B4n0FQraKkboEuTf/scene.splinecode"
+        scene="https://prod.spline.design/hvCBJ7Ak6nUa0IUj/scene.splinecode"
       />
     </main>
   );

@@ -12,7 +12,7 @@ export const MainLand = () => {
     <div className="wrappe" style={{ zIndex: "4" }}>
       <div className="bg">
         <div className="content">
-          <p className="olo">click anywhere !</p>
+          <p className="olo">TOP RIGHT CORNER!</p>
           <h1>
             We are <br /> 
             <span>UniFusion</span>

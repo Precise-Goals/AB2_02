@@ -1,14 +1,13 @@
 /* Header styles */
 .editor-header {
-  display: flex
-  ;
-      justify-content: center;
-      align-items: center;
-      padding: 0.25rem 9.5rem;
-      border-top: 2px solid lightgray;
-      border-bottom: 2px solid lightgray;
-      color: white;
-      background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 9.5rem;
+  border-top: 2px solid lightgray;
+  border-bottom: 2px solid lightgray;
+  color: white;
+  background: white;
 }
 .logo {
   font-weight: bold;

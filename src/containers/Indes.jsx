@@ -165,6 +165,47 @@ const FigmaLikeEditor = () => {
   };
 
   // Add a new element to the canvas
+
+  const addContainer = (type) => {
+    const newElm = {
+      id: elements.length,
+      type,
+      position: { x: 50, y: 50 },
+      width:
+        type === "mobile"
+          ? 375
+          : type === "desktop"
+          ? 700
+          : type === "ipad"
+          ? 500
+          : 150,
+      height:
+        type === "mobile"
+          ? 666.666
+          : type === "desktop"
+          ? 393
+          : type === "ipad"
+          ? 500
+          : 150,
+      style: {
+        backgroundColor: type === "text" ? "transparent" : "#f0f0f0",
+        color: "#000000",
+        borderColor: "#cccccc",
+        borderWidth: "5px",
+        borderStyle: "solid",
+        borderRadius: "30px",
+        padding: "8px",
+        margin: "0px",
+        fontSize: "16px",
+        fontWeight: "normal",
+        textAlign: "left",
+      },
+    };
+
+    setElements([...elements, newElm]);
+    setSelectedElement(elements.length);
+  };
+
   const addElement = (type) => {
     const newElement = {
       id: elements.length,
@@ -448,6 +489,13 @@ const FigmaLikeEditor = () => {
     );
   };
 
+  const Del = () => {
+    if (selectedElement !== null) {
+      setElements(elements.filter((_, index) => index !== selectedElement));
+      setSelectedElement(null);
+    }
+  };
+
   return (
     <div className="editor-container">
       <EditorHeader elements={elements} />
@@ -468,11 +516,31 @@ const FigmaLikeEditor = () => {
               <button onClick={() => addElement("text")}>Text</button>
               <button onClick={() => addElement("button")}>Button</button>
             </div>
-            <button onClick={() => addElement("container")}>Container</button>
+            <button onClick={() => addContainer("desktop")}>Desktop</button>
+            <div
+              className="cbt"
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "0",
+                margin: "0",
+                gap: "1em",
+              }}
+            >
+              <button
+                style={{ width: "100%" }}
+                onClick={() => addContainer("mobile")}
+              >
+                Mobile
+              </button>
+              <button onClick={() => addContainer("ipad")}>Ipad</button>
+            </div>
             <ImageUploadProperty onImageUpload={handleImageUpload} />
           </div>
 
-          <div>
+          {/* <div>
             <h3>Components</h3>
             <button
               onClick={() => {
@@ -504,7 +572,7 @@ const FigmaLikeEditor = () => {
             >
               Form
             </button>
-          </div>
+          </div> */}
 
           <div
             style={{
@@ -537,6 +605,11 @@ const FigmaLikeEditor = () => {
 
           {selectedElement !== null ? (
             <div className="properties-form">
+              <div className="mlay">
+                <button className="dlay" onClick={Del}>
+                  Remove Element
+                </button>
+              </div>
               <div className="mlay">
                 <div className="property-group">
                   <label>Position</label>

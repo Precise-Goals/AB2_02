@@ -1,8 +1,8 @@
 import React from "react";
-import u1 from "../assets/1.png";
-import u2 from "../assets/2.png";
-import u3 from "../assets/3.jpg";
-import u4 from "../assets/4.png";
+import u1 from "../assets/t1.png";
+import u2 from "../assets/t2.png";
+import u3 from "../assets/t3.png";
+import u4 from "../assets/t4.png";
 
 const yus = [
   {
@@ -48,7 +48,7 @@ export const Team = () => {
       </div>
       <div className="teams">
         {yus.map((o, ky) => (
-          <div className="tmmate">
+          <div key={ky} className="tmmate">
             <img src={o.img} alt={o.name} />
             <div className="con">
               <h1>{o.name}</h1>

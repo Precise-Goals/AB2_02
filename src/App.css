@@ -11,10 +11,10 @@ ul.list {
 }
 
 .list li a {
-  color: white;
   margin: 0 1em;
-  font-weight: 200;
   transition: all ease 0.25s;
+  color: white;
+  font-weight: 200;
 }
 .list li a:hover {
   color: gray;
@@ -224,18 +224,18 @@ ul.lsd {
 .tmmate {
   display: flex;
   align-items: center;
-  width: 650px;
+  width: 22rem;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 2em;
-  background: #e4e3e3;
-  padding: 2% 3%;
+  background: #ebd9c1;
+  padding: 1% 2%;
   border-radius: 3rem;
-  box-shadow: 0.75em 0.75em 0em 1px #00000030;
+  box-shadow: 0.75em 0.75em 0em 1px #dace8d30;
 }
-
 .tmmate img {
   width: 180px;
+  border-radius: 25rem;
 }
 .teams {
   display: flex;
@@ -250,4 +250,201 @@ p.olo {
   position: absolute;
   left: 8.5%;
   top: 85%;
+}
+button.dlay {
+  padding: 3% 11%;
+  font-size: 18px;
+  border-radius: 1rem;
+  border: 1px rgb(0, 0, 0) solid;
+  align-self: center;
+  outline: none;
+  margin: 0 6%;
+  cursor: pointer;
+  transition: all ease 0.25s;
+}
+button.dlay:hover {
+  background-color: black;
+  color: white;
+}
+
+.min-h-screen.bg-gray-100.flex.items-center.justify-center {
+  background: url(https://static.vecteezy.com/system/resources/previews/010/375/569/non_2x/liquid-flow-purple-blue-3d-neon-lava-lamp-geometric-background-for-banner-card-ui-design-or-wallpaper-gradient-mesh-bubble-in-the-shape-of-a-wave-drop-fluid-colorful-abstract-shapes-free-vector.jpg);
+  background-size: cover;
+  padding: 1% 10%;
+  border-radius: 10rem;
+}
+
+.bg-white.p-8.shadow-md.w-full.max-w-md {
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 60%;
+  color: white;
+  border-radius: 7rem;
+  padding: 3% 3em;
+}
+
+h2.text-2xl.font-bold.mb-6.text-center {
+  font-family: "H";
+  font-size: 4rem;
+  width: 70%;
+  align-self: start;
+}
+
+form div {
+  display: flex;
+  flex-direction: row;
+  font-size: 30px;
+  gap: 1em;
+  width: 100%;
+  white-space: nowrap;
+  font-weight: 200;
+  justify-content: space-between;
+}
+
+form div input {
+  font-size: 21px;
+  background: transparent;
+  border-bottom: 2px solid white;
+  color: white;
+  font-weight: 500;
+  outline: none;
+  stroke: none;
+  border: none;
+  border-bottom: 2px solid white;
+  padding: 0 3em;
+  width: 100%;
+}
+
+button.w-full.bg-blue-600.text-white.font-bold.py-2.px-4.rounded.focus\:outline-none.focus\:ring-2.focus\:ring-blue-500.hover\:bg-blue-700 {
+  padding: 1em 3em;
+  font-size: 21px;
+  border-radius: 5rem;
+  align-self: flex-start;
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  margin: 7% 0;
+  gap: 2em;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.text-center button {
+  background: transparent;
+  color: white;
+  outline: none;
+  stroke: none;
+  border: none;
+  font-size: 21px;
+  margin: 10px 0;
+}
+.aisa {
+  background: linear-gradient(
+    45deg,
+    orange,
+    #c846a8,
+    #b64b68,
+    #b900ff,
+    #e2c6c6
+  );
+  background-clip: text;
+}
+.aisa:hover {
+  letter-spacing: 0.01em;
+}
+p.scl {
+  position: absolute;
+  bottom: 40%;
+  left: 10%;
+  font-size: 20px;
+  font-weight: 200;
+  font-style: italic;
+}
+main::after {
+  content: " ";
+  background: linear-gradient(0deg, #ffffff8a, transparent);
+  width: 100%;
+  height: 18%;
+  display: block;
+  position: absolute;
+  bottom: 0;
+}
+
+.chtbot {
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 1% 5%;
+  gap: 3rem;
+  position: relative;
+  background: black;
+  color: white;
+}
+
+.chtbot form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: flex-start;
+}
+.chtbot textarea::placeholder[type="text"] {
+  font-size: 30px;
+}
+.chtbot textarea[type="text"] {
+  padding: 5% 2em;
+  min-width: 350px;
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+  resize: none;
+  border-radius: 3rem;
+  font-size: 18px;
+  z-index: 512;
+  height: 240px;
+}
+
+button.btnct {
+  padding: 7% 15%;
+  border-radius: 5rem;
+  cursor: pointer;
+  z-index: 443;
+  font-size: 20px;
+  gap: 0.045em;
+  display: flex;
+  flex-direction: row;
+  transition: all ease 0.25s;
+  align-self: center;
+  border: 1px solid white;
+}
+button.btnct:hover {
+  background-color: black;
+  border: 1px solid white;
+  color: white;
+}
+
+.chtbot::after {
+  display: block;
+  width: 91rem;
+  height: 40rem;
+  content: " ";
+  position: absolute;
+  background: linear-gradient(45deg, blue, orange);
+  border-radius: 15rem 0 15rem 0;
+  filter: blur(79px) opacity(0.25);
+  top: 21%;
+  z-index: 0;
+}
+h1.ask {
+  background: black;
+  color: white;
+  font-family: "H";
+  padding: 4% 0 0% 0%;
+  text-align: center;
+  font-size: 60px;
 }
