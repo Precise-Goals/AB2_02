@@ -5,7 +5,7 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
 } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth } from "../Firebase";
 
 const Login = () => {
   const [isSignUp, setIsSignUp] = useState(false);

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./style.css";
 import { collection, getDocs, doc, getDoc } from "firebase/firestore";
-import { db } from "../firebase"; // Ensure you have firebase.js with proper config
+import { db } from "../Firebase"; // Ensure you have firebase.js with proper config
 import EditorHeader from "./EditorHeader";
 // import { generateAiSuggestions } from "./AI";
 
